@@ -60,6 +60,25 @@ def read_cliente_by_cpf(cpf: str, db: Session = Depends(get_db)):
     except Exception as ex:
         log.error(f"Erro ao buscar cliente pelo CPF. {str(ex)}")
         raise HTTPException(status_code=400, detail="Erro ao buscar cliente pelo CPF")
+    
+
+@router.get(
+    "/bycpf/{email}", response_model=ClienteModel, description="Busca um cliente pelo EMAIL"
+)
+def read_cliente_by_email(email: str, db: Session = Depends(get_db)):
+    try:
+        log.info(f"Buscando cliente com email {email}")
+        cliente = cliente_service.get_cliente_by_email(db, email)
+        if not cliente:
+            raise HTTPException(
+                status_code=404, detail="Cliente não encontrado pelo email"
+            )
+        return cliente
+    except HTTPException:
+        raise
+    except Exception as ex:
+        log.error(f"Erro ao buscar cliente pelo email. {str(ex)}")
+        raise HTTPException(status_code=400, detail="Erro ao buscar cliente pelo email")
 
 
 @router.get(
