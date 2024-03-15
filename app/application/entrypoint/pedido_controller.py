@@ -7,7 +7,6 @@ from fastapi import APIRouter, Depends, HTTPException
 from infrastructure.database import get_db
 from infrastructure.dataprovider.pedido_database_adapter import PedidoDatabaseAdapter
 from sqlalchemy.orm import Session
-from application.entrypoint.cognito_controller import generate_token
 
 router = APIRouter()
 log = daiquiri.getLogger(__name__)
