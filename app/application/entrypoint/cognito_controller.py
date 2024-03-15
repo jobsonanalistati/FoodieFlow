@@ -12,16 +12,26 @@ client = boto3.client("cognito-idp", region_name=COGNITO_REGION)
 router = APIRouter()
 
 @router.post("/signup")
-def signup(username: str, password: str):
+def signup(email: str, password: str = None, cpf: str = None, name: str = None):
     try:
         client.sign_up(
             ClientId=CLIENT_ID,
-            Username=username,
-            Password=password,
+            Username=cpf if cpf else email,
+            Password=password if password else "Foodieflow@123",
+            UserAttributes=[
+                {
+                    "Name": "name",
+                    "Value": name
+                },
+                {
+                    "Name": "email",
+                    "Value": email
+                }
+            ]
         )
-        return {"message": "User signed up successfully"}
+        return {"message": "Usuário cadastrado com sucesso!"}
     except client.exceptions.UsernameExistsException:
-        raise HTTPException(status_code=400, detail="Username already exists")
+        raise HTTPException(status_code=400, detail="Username já existe!")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

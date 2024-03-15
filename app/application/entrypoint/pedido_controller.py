@@ -17,17 +17,14 @@ pedido_service = PedidoServiceImpl(pedido_repository)
 
 
 @router.post("/", response_model=PedidoModel, description="Cria um novo pedido")
-def create_pedido(pedido: PedidoModel, username: str, db: Session = Depends(get_db)):
-    print("username: " + username)
-    if generate_token(username):
-        try:
-            log.info(f"Pedido para criação: {pedido}")
-            return pedido_service.create_pedido(db, pedido)
-        except Exception as ex:
-            log.error(f"Erro ao criar pedido. {str(ex)}")
-            raise HTTPException(status_code=400, detail="Erro ao criar pedido")
-    else:
-        return "Erro"
+def create_pedido(pedido: PedidoModel, db: Session = Depends(get_db)):
+    try:
+        log.info(f"Pedido para criação: {pedido}")
+        return pedido_service.create_pedido(db, pedido)
+    except Exception as ex:
+        log.error(f"Erro ao criar pedido. {str(ex)}")
+        raise HTTPException(status_code=400, detail="Erro ao criar pedido")
+
 
 @router.get("/", response_model=list[PedidoModel], description="Busca todos os pedidos")
 def read_all_pedidos(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
