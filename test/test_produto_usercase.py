@@ -33,4 +33,3 @@ def test_get_produto():
 
     # Então o método get_produto do repositório deve ser chamado com o id correto
     repo_mock.get_produto.assert_called_once_with(session, 1)
-    
