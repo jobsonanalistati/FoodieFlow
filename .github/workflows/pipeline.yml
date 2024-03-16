@@ -97,3 +97,13 @@ jobs:
       # A ordem dos arquivos importa no Kubernetes
         run: |
           kubectl apply \
+          -f helms/values.yaml \
+          -f helms/configmap-postgres.yaml \
+          -f helms/configmap-python.yaml \
+          -f helms/persistentvolumeclaim.yaml \
+          -f helms/persistentvolume.yaml \
+          -f helms/service-loadbalancer.yaml \
+          -f helms/service-postgres.yaml \
+          -f helms/service-python.yaml \
+          -f helms/deployment-postgres.yaml \
+          -f helms/deployment-python.yaml \
