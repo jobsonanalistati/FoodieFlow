@@ -12,6 +12,7 @@ from application.entrypoint import (
     cliente_controller,
     pedido_controller,
     produto_controller,
+    cognito_controller,
 )
 from infrastructure.database import init_db
 
@@ -36,6 +37,7 @@ app.include_router(cliente_controller.router, prefix="/clientes")
 app.include_router(categoria_controller.router, prefix="/categorias")
 app.include_router(produto_controller.router, prefix="/produtos")
 app.include_router(pedido_controller.router, prefix="/pedidos")
+app.include_router(cognito_controller.router, prefix="/cognito")
 
 
 @app.on_event("startup")
