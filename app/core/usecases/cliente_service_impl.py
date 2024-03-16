@@ -19,6 +19,9 @@ class ClienteServiceImpl:
     def get_cliente_by_cpf(self, db: Session, cpf: str):
         return self.cliente_repository.get_cliente_by_cpf(db, cpf)
 
+    def get_cliente_by_email(self, db: Session, email: str):
+        return self.cliente_repository.get_cliente_by_email(db, email)
+
     def get_clientes(self, db: Session, skip: int = 0, limit: int = 100):
         return self.cliente_repository.get_clientes(db, skip, limit)
 
