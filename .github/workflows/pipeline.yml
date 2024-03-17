@@ -107,3 +107,4 @@ jobs:
           -f helms/service-python.yaml \
           -f helms/deployment-postgres.yaml \
           -f helms/deployment-python.yaml \
+          --validate=false
