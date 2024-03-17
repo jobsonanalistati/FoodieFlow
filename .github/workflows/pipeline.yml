@@ -98,8 +98,8 @@ jobs:
         run: |
           kubectl apply \
           -f production/configmap-python.yaml \
-          -f production/service-loadbalancer.yaml \
-          -f production/service-postgres.yaml \
-          -f production/service-python.yaml \
           -f production/deployment-python.yaml \
+          -f production/hpa-python.yaml \
+          -f production/service-python.yaml \
+          -f production/service-loadbalancer.yaml \
           --validate=false
