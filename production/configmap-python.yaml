@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-python
+data:
+  POSTGRES_DB: "FIAP"
+  POSTGRES_HOST: "gestao-postgresql"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres"
