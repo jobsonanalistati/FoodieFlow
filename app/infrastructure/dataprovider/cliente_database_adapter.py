@@ -18,6 +18,9 @@ class ClienteDatabaseAdapter(ClienteRepository):
     def get_cliente_by_cpf(self, db: Session, cpf: str):
         return db.query(ClienteORM).filter(ClienteORM.cpf == cpf).first()
 
+    def get_cliente_by_email(self, db: Session, email: str):
+        return db.query(ClienteORM).filter(ClienteORM.email == email).first()
+
     def get_clientes(self, db: Session, skip: int = 0, limit: int = 100):
         return db.query(ClienteORM).offset(skip).limit(limit).all()
 

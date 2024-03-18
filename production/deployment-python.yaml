@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-deployment
+spec:
+  template:
+    metadata:
+      name: python
+      labels:
+        app: python
+    spec:
+      containers:
+        - name: python
+          image: 730335442495.dkr.ecr.us-east-1.amazonaws.com/ecr-foodieflow:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef: 
+                name: configmap-python
+          livenessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 8000
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /healthcheck
+              port: 8000
+            periodSeconds: 10
+            failureThreshold: 3
+            initialDelaySeconds: 30
+          resources:
+            requests:
+              cpu: 10m
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python

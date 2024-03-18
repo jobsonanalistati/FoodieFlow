@@ -17,6 +17,10 @@ class ClienteRepository(ABC):
         pass
 
     @abstractmethod
+    def get_cliente_by_email(self, db: Session, email: str):
+        pass
+
+    @abstractmethod
     def get_clientes(self, db: Session, skip: int = 0, limit: int = 100):
         pass
 
