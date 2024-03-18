@@ -7,18 +7,23 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy_utils import create_database, database_exists
 
-load_dotenv()
+from application.commons.secret_manager import aws_connection, return_variables
+
+
+client = aws_connection()
+db_variables = return_variables(client)
 
 # Pegando as configuracoes do .env
-DB_USER = config("POSTGRES_USER", default=os.getenv("POSTGRES_USER"))
-DB_PASSWORD = config("POSTGRES_PASSWORD", default=os.getenv("POSTGRES_PASSWORD"))
-DB_NAME = config("POSTGRES_DB", default=os.getenv("POSTGRES_DB"))
-DB_HOST = config("POSTGRES_HOST", default=os.getenv("POSTGRES_HOST"))
+DB_USER = db_variables.get("username")
+DB_PASSWORD = db_variables.get("password")
+DB_NAME = db_variables.get("db_name")
+DB_HOST = db_variables.get("host")
+
 
 SQLALCHEMY_DATABASE_URL = (
     f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 )
-
+print("SQLALCHEMY_DATABASE_URL")
 Base = declarative_base()
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
