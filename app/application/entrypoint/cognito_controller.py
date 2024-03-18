@@ -2,9 +2,15 @@ import os
 from fastapi import APIRouter, HTTPException
 import boto3
 
+from application.commons.secret_manager import return_variables, aws_connection
+
+client = aws_connection()
+cognito_variables = return_variables(client)
+
+# Pegando as configuracoes do .env
+COGNITO_POOL_ID = cognito_variables.get("username")
+CLIENT_ID = cognito_variables.get("password")
 COGNITO_REGION = os.getenv("COGNITO_REGION")
-COGNITO_POOL_ID = os.getenv("COGNITO_POOL_ID")
-CLIENT_ID = os.getenv("CLIENT_ID")
 CHALLENGE_NAME = os.getenv("CUSTOM_CHALLENGE")
 ANSWER = "ANSWER=opensesame,USERNAME="
 AUTH_FLOW = os.getenv("AUTH_FLOW")
