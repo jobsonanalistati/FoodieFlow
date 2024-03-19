@@ -8,7 +8,7 @@ def aws_connection():
     session = boto3.session.Session()
     client = session.client(
         service_name="secretsmanager",
-        region_name="us-east-1",  # Substitua pela sua região da AWS
+        region_name="us-east-1",
     )
     return client
 
