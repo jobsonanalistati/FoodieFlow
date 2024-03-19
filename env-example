@@ -13,7 +13,6 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 POSTGRES_DB=FIAP
 POSTGRES_HOST=gestao-postgresql
-#POSTGRES_PORT="5432"
 
 #python
 HOST_API=localhost
