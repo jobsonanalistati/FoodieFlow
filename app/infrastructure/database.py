@@ -23,7 +23,6 @@ DB_HOST = db_variables.get("host")
 SQLALCHEMY_DATABASE_URL = (
     f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 )
-print("SQLALCHEMY_DATABASE_URL")
 Base = declarative_base()
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
