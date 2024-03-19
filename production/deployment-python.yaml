@@ -3,9 +3,12 @@ kind: Deployment
 metadata:
   name: python-deployment
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
   template:
     metadata:
-      name: python
       labels:
         app: python
     spec:
@@ -14,9 +17,37 @@ spec:
           image: 730335442495.dkr.ecr.us-east-1.amazonaws.com/ecr-foodieflow:latest
           ports:
             - containerPort: 80
-          envFrom:
-            - configMapRef: 
-                name: configmap-python
+          env:
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: password
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: db_name
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: host
+            - name: COGNITO_POOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: pool
+            - name: CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secrets
+                  key: client_id
           livenessProbe:
             httpGet:
               path: /healthcheck
@@ -34,7 +65,10 @@ spec:
           resources:
             requests:
               cpu: 10m
-  replicas: 1
-  selector:
-    matchLabels:
-      app: python
+      volumes:
+        - name: aws-secrets
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "aws-secrets-provider"
