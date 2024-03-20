@@ -88,7 +88,6 @@ jobs:
         run: |
           kubectl apply \
           -f production/configmap-python.yaml \
-          -f production/aws-secrets-provider.yaml \
           -f production/deployment-python.yaml \
           -f production/hpa-python.yaml \
           -f production/service-python.yaml \
