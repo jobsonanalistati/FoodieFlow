@@ -38,6 +38,11 @@ spec:
                 configMapKeyRef:
                   name: configmap-python
                   key: DB_HOST
+            - name: COGNITO_REGION
+              valueFrom:
+                configMapKeyRef:
+                  name: configmap-python
+                  key: COGNITO_REGION
             - name: COGNITO_POOL_ID
               valueFrom:
                 configMapKeyRef:
