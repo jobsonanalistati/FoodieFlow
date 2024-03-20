@@ -3,10 +3,10 @@ kind: ConfigMap
 metadata:
   name: configmap-python
 data:
-  POSTGRES_DB: "FIAP"
-  POSTGRES_HOST: "rds-foodieflow.chwqogc4gb6p.us-east-1.rds.amazonaws.com"
-  POSTGRES_USER: "postgres"
-  POSTGRES_PASSWORD: "postgres"
+  DB_NAME: "FIAP"
+  DB_HOST: "rds-foodieflow.chwqogc4gb6p.us-east-1.rds.amazonaws.com"
+  DB_USER: "postgres"
+  DB_PASSWORD: "postgres"
   COGNITO_REGION: "us-east-1"
   COGNITO_POOL_ID: "us-east-1_aVVe6Tvhg"
   CLIENT_ID: "e5vt13mqvvek44mfbir870ru1"
