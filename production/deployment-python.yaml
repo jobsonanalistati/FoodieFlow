@@ -22,32 +22,32 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: username
+                  key: DB_USER
             - name: DB_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: password
+                  key: DB_PASSWORD
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: db_name
+                  key: DB_NAME
             - name: DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: host
+                  key: DB_HOST
             - name: COGNITO_POOL_ID
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: pool
+                  key: COGNITO_POOL_ID
             - name: CLIENT_ID
               valueFrom:
                 configMapKeyRef:
                   name: configmap-python
-                  key: client_id
+                  key: CLIENT_ID
           livenessProbe:
             httpGet:
               path: /healthcheck
