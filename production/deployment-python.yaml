@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: python
-          image: 730335442495.dkr.ecr.us-east-1.amazonaws.com/ecr-foodieflow:latest
+          image: 339712853459.dkr.ecr.us-east-1.amazonaws.com/ecr-foodieflow:latest
           ports:
             - containerPort: 80
           env:
