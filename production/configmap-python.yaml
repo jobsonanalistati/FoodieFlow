@@ -3,13 +3,13 @@ kind: ConfigMap
 metadata:
   name: configmap-python
 data:
-#  POSTGRES_DB: "FIAP"
-#  POSTGRES_HOST: "gestao-postgresql"
-#  POSTGRES_USER: "postgres"
-#  POSTGRES_PASSWORD: "postgres"
+  POSTGRES_DB: "FIAP"
+  POSTGRES_HOST: "rds-foodieflow.chwqogc4gb6p.us-east-1.rds.amazonaws.com"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "postgres"
   COGNITO_REGION: "us-east-1"
-#  COGNITO_POOL_ID: "us-east-1_I1kU4v5iV"
-#  CLIENT_ID: "7m39hk01k3g53jqc3p1230kvj2"
+  COGNITO_POOL_ID: "us-east-1_aVVe6Tvhg"
+  CLIENT_ID: "e5vt13mqvvek44mfbir870ru1"
   CUSTOM_CHALLENGE: "CUSTOM_CHALLENGE"
   AUTH_FLOW: "CUSTOM_AUTH"
 

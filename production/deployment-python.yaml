@@ -21,32 +21,32 @@ spec:
             - name: DB_USER
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: username
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: password
             - name: DB_NAME
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: db_name
             - name: DB_HOST
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: host
             - name: COGNITO_POOL_ID
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: pool
             - name: CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: aws-secrets
+                  name: configmap-python
                   key: client_id
           livenessProbe:
             httpGet:
@@ -65,10 +65,10 @@ spec:
           resources:
             requests:
               cpu: 10m
-      volumes:
-        - name: aws-secrets
-          csi:
-            driver: secrets-store.csi.k8s.io
-            readOnly: true
-            volumeAttributes:
-              secretProviderClass: "aws-secrets-provider"
+ #     volumes:
+ #       - name: aws-secrets
+ #         csi:
+ #           driver: secrets-store.csi.k8s.io
+ #           readOnly: true
+ #           volumeAttributes:
+ #             secretProviderClass: "aws-secrets-provider"
